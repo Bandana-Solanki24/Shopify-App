@@ -1,0 +1,45 @@
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    /* justify-content:space-evenly; */
+    background-color:  rgb(53, 50, 50);
+    justify-content: center;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    
+    color: white;
+
+  }
+  .email-input{
+    border-radius:3px;
+    border:2px solid rgb(16, 15, 15);
+
+  }
+  .subscribe-button{
+    border-radius:5px;
+    border:2px solid rgb(16, 15, 15);
+  }
+  hr{
+    border: none;
+  height: 1px;
+  background-color: black; /* Change this to the desired color */
+  margin: 20px 0;
+  opacity: 0.5
+  }
+  
+  .footer-card {
+    width: 30%;
+  }
+  .card-container{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    margin: 20px;
+    
+    
+  }
+  .para{
+    
+    text-align: center;
+  }
+  

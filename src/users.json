@@ -1,0 +1,68 @@
+{
+  "user": [
+    {},
+    {
+      "id": 1689226502397,
+      "firstName": "Bandana",
+      "lastName": "Solanki",
+      "email": "Vandanasolanki2424@gmail.com",
+      "mobile": "8109714105",
+      "password": "123445",
+      "confirmPassword": "123456",
+      "gender": ""
+    },
+    {
+      "id": 1689235390964,
+      "firstName": "Bandana",
+      "lastName": "Solanki",
+      "email": "Vandanasolanki2424@gmail.com",
+      "mobile": "8109714105",
+      "password": "123445",
+      "confirmPassword": "123456",
+      "gender": "male"
+    },
+    {
+      "id": 1689235445897,
+      "firstName": "Bandana",
+      "lastName": "Solanki",
+      "email": "Vandanasolanki2424@gmail.com",
+      "mobile": "8109714105",
+      "password": "123445",
+      "confirmPassword": "123456",
+      "gender": "male"
+    },
+    {
+      "id": 1689235448229
+    },
+    {
+      "id": 1689235725998,
+      "firstName": "",
+      "lastName": "",
+      "email": "",
+      "mobile": "",
+      "password": "",
+      "confirmPassword": "",
+      "gender": ""
+    },
+    {
+      "id": 1689235727149,
+      "firstName": "",
+      "lastName": "",
+      "email": "",
+      "mobile": "",
+      "password": "",
+      "confirmPassword": "",
+      "gender": ""
+    },
+    {
+      "id": 1689235729778,
+      "firstName": "",
+      "lastName": "",
+      "email": "",
+      "mobile": "",
+      "password": "",
+      "confirmPassword": "",
+      "gender": ""
+    }
+  ]
+}

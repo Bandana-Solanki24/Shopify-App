@@ -1,0 +1,20 @@
+.container{
+    padding:30px;
+    
+    align-items: center;
+    text-align: center;
+}
+.heading{
+    font-size: 33px;
+    font-weight: bolder;
+    color: red;
+}
+.error{
+    font-size: 26px;
+    
+}
+.para{
+    font-size: 24px;
+    font-weight: bold;
+    
+}

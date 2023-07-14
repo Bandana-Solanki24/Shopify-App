@@ -1,0 +1,26 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    max-width: 400px;
+    padding:20px; /* Set a maximum width to limit card size */
+    /* Add additional styles for the card */
+  }
+  
+  .image {
+    width: 100%; /* Set the image width to occupy the entire width of the card */
+    height: auto; /* Automatically adjust the height based on the image aspect ratio */
+  }
+  
+  .button{
+    align-self: center;
+  }
+  .product-name{
+    font-size: 12px;
+    font-weight: bold;
+    color: blue;
+  }
+  .product-cost{
+    font-size:14px;
+    font-weight:bold ;
+  }
