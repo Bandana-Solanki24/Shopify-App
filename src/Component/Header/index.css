@@ -7,6 +7,11 @@
     justify-content: space-between;
     background-color: rgb(53, 50, 50)  ;
 }
+.icon-container {
+    width: 40px; /* Adjust the width as per your requirement */
+    height: 40px; /* Adjust the height as per your requirement */
+  }
+  
 nav .navbar-brand{
     color:rgb(215, 105, 127);
     grid-column: 2/3;

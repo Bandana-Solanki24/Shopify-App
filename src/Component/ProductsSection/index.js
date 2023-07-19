@@ -1,23 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
 import ProductList from "../ProductList";
 import "./index.css";
+import Search from "../Search";
+import Sort from "../Sort";
+import FilterSection from "../FilterSection";
+import { useFilterContext } from "../../Context/FilterContext";
 
 const ProductsSection = () => {
-  const [searchQuery, setSearchQuery] = useState("");
-  const handleSearchChange = (e) => {
-    setSearchQuery(e.target.value);
-  };
+  const { filter_products } = useFilterContext();
+  console.log("data", filter_products);
   return (
-    <div className="filter-container">
-      <input
-        placeholder="Search Product Here"
-        className="search-section form-control"
-        type="text"
-        value={searchQuery}
-        onChange={handleSearchChange}
-      />
+    <div className="main-container">
+      <FilterSection />
+      <div className="filter-section">
+        <Sort />
+        <Search />
+      </div>
       <div>
-        <ProductList searchQuery={searchQuery} />
+        <ProductList filter_products={filter_products} />
       </div>
     </div>
   );

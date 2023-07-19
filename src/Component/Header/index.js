@@ -3,14 +3,19 @@ import "./index.css";
 import { Link } from "react-router-dom";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { FaUserCheck } from "react-icons/fa";
-import {
-  CDropdown,
-  CDropdownToggle,
-  CDropdownMenu,
-  CDropdownItem,
-} from "@coreui/react";
 
 function Header() {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  const handleToggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const handleDropdownItemClick = (item) => {
+    // Handle the dropdown item click
+    console.log("Selected item:", item);
+  };
+
   return (
     <nav className="main-menu">
       <div className="navbar-brand">
@@ -47,25 +52,53 @@ function Header() {
             </Link>
           </li>
           <li>
-            <Link className="nav-link" to="/menu">
-              <div className="icon-space">
-                <CDropdown>
-                  <CDropdownToggle color="secondary">
-                    <FaUserCheck />
-                  </CDropdownToggle>
-                  <CDropdownMenu>
-                    <CDropdownItem as={Link} to="/menu">
+            {/* <Link className="nav-link" to="/menu"> */}
+            <div className="icon-space icon-container">
+              <div className="dropdown">
+                <button
+                  className="dropdown-button"
+                  onClick={handleToggleDropdown}
+                >
+                  <FaUserCheck />
+                </button>
+                {isDropdownOpen && (
+                  <div className="dropdown-content">
+                    <Link
+                      to="/menu"
+                      className="dropdown-item"
+                      onClick={() => {
+                        handleDropdownItemClick("Login");
+                        setIsDropdownOpen(false);
+                      }}
+                    >
                       Login
-                    </CDropdownItem>
-                    <CDropdownItem as={Link} to="/registration">
+                    </Link>
+                    <Link
+                      to="/registration"
+                      className="dropdown-item"
+                      onClick={() => {
+                        handleDropdownItemClick("Register");
+                        setIsDropdownOpen(false);
+                      }}
+                    >
                       Register
-                    </CDropdownItem>
-                  </CDropdownMenu>
-                </CDropdown>
+                    </Link>
+                    <Link
+                      to="/profile"
+                      className="dropdown-item"
+                      onClick={() => {
+                        handleDropdownItemClick("Profile");
+                        setIsDropdownOpen(false);
+                      }}
+                    >
+                      Profile
+                    </Link>
+                  </div>
+                )}
               </div>
-            </Link>
+            </div>
+            {/* </Link> */}
           </li>
-          <Link to="/registration">Register</Link>
         </ul>
       </div>
     </nav>

@@ -3,6 +3,8 @@ import "./index.css";
 import { useProductContext } from "../../Context/productContext";
 import Product from "../Product";
 
+// import { Link } from "react-router-dom";
+
 const ProductList = ({ searchQuery }) => {
   const { isLoading, products } = useProductContext();
   console.log(products);
@@ -15,8 +17,8 @@ const ProductList = ({ searchQuery }) => {
       <div className="card-container">
         {products.map((eachCard) => {
           return (
-            <div>
-              <Product key={eachCard.id} {...eachCard} />
+            <div key={eachCard.id}>
+              <Product {...eachCard} state={eachCard} />
             </div>
           );
         })}

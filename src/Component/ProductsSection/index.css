@@ -1,13 +1,16 @@
-.search-section{
-    width: 80%;
+.main-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
     
 
 }
-.filter-container{
+.filter-section{
     padding-top: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-   justify-content: center;
+   justify-content: flex-end;
 
 }

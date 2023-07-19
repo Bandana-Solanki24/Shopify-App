@@ -6,10 +6,11 @@ import Order from "./Component/Order";
 import Header from "./Component/Header";
 import Cart from "./Component/Cart";
 import Registration from "./Component/Registration";
-import Menu from "./Component/Menu";
+import Menu from "./Component/Login";
 import ErrorPage from "./Component/ErrorPage";
 import Footer from "./Component/Footer";
-import "bootstrap/dist/css/bootstrap.css";
+import SinglePage from "./Component/SinglePage";
+import Profile from "./Component/Profile";
 
 function App() {
   return (
@@ -22,7 +23,9 @@ function App() {
           <Route path="/order" element={<Order />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/menu" element={<Menu />} />
+          <Route path="/singlePage" element={<SinglePage />} />
           <Route path="/registration" element={<Registration />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </Router>

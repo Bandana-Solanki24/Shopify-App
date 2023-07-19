@@ -1,0 +1,13 @@
+.sort-section{
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
+    
+}
+.sort{
+    font-size: 16px;
+    font-weight: bold;
+}
+.icon{
+    gap:10px;
+}

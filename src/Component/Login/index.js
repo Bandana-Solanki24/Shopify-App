@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./index.css";
-import Footer from "../Footer";
+
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -84,10 +84,11 @@ function Menu() {
         </div>
       </div>
       <div className="register-link">
-        <div className="register">
-          <button onClick={navigateToComponent}>Register Now</button>
-        </div>
-        <div className="forgot-password">Forgot Password</div>
+        <button className="button" onClick={navigateToComponent}>
+          Register Now
+        </button>
+
+        <button className="button">Forgot Password</button>
       </div>
     </div>
   );

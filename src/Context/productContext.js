@@ -10,15 +10,21 @@ const initialState = {
   isLoading: false,
   isError: false,
   products: [],
+  singleProduct: {},
+  singlePageLoading: false,
+  isSingleError: false,
+  page: 1,
+  itemsPerPage: 6,
 };
 
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-
+  //calling api for all the products
   const getProducts = async (url) => {
     dispatch({ type: "SET_LOADING" });
     try {
       const res = await axios.get(url);
+      console.log(res);
       const products = await res.data;
       console.log(products);
       dispatch({ type: "SET_API_DATA", payload: products });
@@ -26,12 +32,37 @@ const AppProvider = ({ children }) => {
       dispatch({ type: "API_ERROR" });
     }
   };
+
+  //calling api for the single products
+  const getSingleProduct = async (url) => {
+    dispatch({ type: "SET_SINGLE_LOADING" });
+    try {
+      const res = await axios.get(API);
+
+      const singleProduct = await res.data;
+      console.log(singleProduct);
+      dispatch({ type: "SET_SINGLE_PRODUCT", payload: singleProduct });
+    } catch (error) {
+      dispatch({ type: "SET_SINGLE_ERROR" });
+    }
+  };
+
+  //handle search functionality
+
+  //handle pagination
+  const handlePageChange = (pageNumber) => {
+    dispatch({ type: "SET_CURRENT_PAGE", payload: pageNumber });
+  };
   useEffect(() => {
     getProducts(API);
   }, []);
 
   return (
-    <AppContext.Provider value={{ ...state }}>{children}</AppContext.Provider>
+    <AppContext.Provider
+      value={{ ...state, getSingleProduct, handlePageChange }}
+    >
+      {children}
+    </AppContext.Provider>
   );
 };
 
