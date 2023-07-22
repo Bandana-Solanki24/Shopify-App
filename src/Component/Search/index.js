@@ -1,12 +1,12 @@
 import React from "react";
 import "./index.css";
-import { useFilterContext } from "../../Context/FilterContext";
 
-function Search() {
-  const {
-    filter: { text },
-    searchPost,
-  } = useFilterContext();
+function Search({ handleSearch }) {
+  const handleInputChange = (e) => {
+    const query = e.target.value;
+
+    handleSearch(query);
+  };
 
   return (
     <div className="search-bar">
@@ -14,9 +14,8 @@ function Search() {
         <input
           placeholder="Search Product Here"
           className="search-section form-control"
-          type="text"
-          value={text}
-          onChange={searchPost}
+          type="input"
+          onChange={handleInputChange}
         />
       </form>
     </div>

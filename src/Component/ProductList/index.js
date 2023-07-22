@@ -5,13 +5,11 @@ import Product from "../Product";
 
 // import { Link } from "react-router-dom";
 
-const ProductList = ({ searchQuery }) => {
-  const { isLoading, products } = useProductContext();
+const ProductList = () => {
+  const { products } = useProductContext();
+
   console.log(products);
 
-  // const filteredProducts = products.filter((product) =>
-  //   product.product_name.toLowerCase().includes(searchQuery.toLowerCase())
-  // );
   return (
     <div className="container">
       <div className="card-container">

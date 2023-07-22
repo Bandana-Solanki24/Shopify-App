@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import "./index.css";
 import Star from "../Star";
 
-const SinglePage = ({ eachCard }) => {
+const SinglePage = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const cartData = location.state;
@@ -13,6 +13,25 @@ const SinglePage = ({ eachCard }) => {
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
+  const handleAddButtonClick = () => {
+    // Get the existing cart data from local storage
+    const existingCartData = localStorage.getItem("cartData");
+    let updatedCartData = [];
+
+    if (existingCartData) {
+      // Parse the existing cart data from local storage
+      updatedCartData = JSON.parse(existingCartData);
+    }
+
+    // Add the current cart item to the cart data
+    updatedCartData.push(cartData);
+
+    // Update the cart data in local storage
+    localStorage.setItem("cartData", JSON.stringify(updatedCartData));
+
+    navigate("/cart");
+  };
+
   return (
     <div className="single-page-container">
       <div className="image-section">
@@ -67,11 +86,8 @@ const SinglePage = ({ eachCard }) => {
         <p className="cost">Price:Rs. {cartData.product_cost}</p>
         <span>Color: {cartData.color_id.$oid}</span>
         <div className="button-container">
-          <button
-            className=" button button1 "
-            onClick={() => navigate("/cart", { state: cartData })}
-          >
-            ADD TO CART{" "}
+          <button className=" button button1 " onClick={handleAddButtonClick}>
+            ADD TO CART
           </button>
           <button className=" button button2">RATE PRODUCT</button>
         </div>

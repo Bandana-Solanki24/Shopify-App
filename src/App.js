@@ -2,7 +2,7 @@ import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./Component/Home";
 import ProductsSection from "./Component/ProductsSection";
-import Order from "./Component/Order";
+import Orders from "./Component/Orders";
 import Header from "./Component/Header";
 import Cart from "./Component/Cart";
 import Registration from "./Component/Registration";
@@ -11,6 +11,7 @@ import ErrorPage from "./Component/ErrorPage";
 import Footer from "./Component/Footer";
 import SinglePage from "./Component/SinglePage";
 import Profile from "./Component/Profile";
+import React from "react";
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/productsSection" element={<ProductsSection />} />
-          <Route path="/order" element={<Order />} />
+          <Route path="/order" element={<Orders />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/menu" element={<Menu />} />
           <Route path="/singlePage" element={<SinglePage />} />

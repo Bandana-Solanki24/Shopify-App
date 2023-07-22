@@ -1,0 +1,24 @@
+.cart-image{
+    height:100px;
+    width: 100px;
+}
+.order-container{
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    margin: 20px;
+    
+
+}
+.card-container{
+    
+    border: 2px solid grey;
+    border-radius:5px ;
+}
+.order{
+    border: 2px solid grey;
+    border-radius:5px ;
+    overflow-y: scroll;
+    padding: 20px;
+    height:600px;
+}
