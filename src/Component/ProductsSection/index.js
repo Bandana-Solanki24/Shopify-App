@@ -1,3 +1,4 @@
+// ProductsSection.js
 import React, { useState } from "react";
 import FilterProductList from "../FilterProductsList";
 import "./index.css";
@@ -9,27 +10,68 @@ import { useProductContext } from "../../Context/productContext";
 
 const ProductsSection = () => {
   const { products } = useProductContext();
-  const filter_products = [...products];
-  const [searchQuery, setSearchQuery] = useState("");
-  const [filteredProducts, setFilteredProducts] = useState(filter_products);
-  console.log(searchQuery);
-  console.log(filter_products, "p");
+  const [filteredProducts, setFilteredProducts] = useState(products);
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedColorId, setSelectedColorId] = useState("");
 
   // Handle search functionality
   const handleSearch = (query) => {
-    setSearchQuery(query);
-
     const filtered = products.filter((product) =>
       product.product_name.toLowerCase().includes(query.toLowerCase())
     );
     setFilteredProducts(filtered);
   };
 
+  // Function to sort products by star rating
+  const handleStarRating = (order) => {
+    const sortedProducts = [...filteredProducts].sort((a, b) => {
+      const ratingA = a.product_rating;
+      const ratingB = b.product_rating;
+
+      if (order === "asc") {
+        return ratingA - ratingB;
+      } else {
+        return ratingB - ratingA;
+      }
+    });
+
+    // Update the filteredProducts state with the sorted products
+    setFilteredProducts(sortedProducts);
+  };
+
+  // Function to filter products based on selected category or color
+  const filterProducts = (filterBy, filterValue) => {
+    if (filterValue) {
+      const filtered = products.filter(
+        (item) => item[filterBy].$oid === filterValue
+      );
+      setFilteredProducts(filtered);
+    } else {
+      // If no filter is selected, show all products
+      setFilteredProducts(products);
+    }
+  };
+
+  // Handle product by category
+  const selectCategoryType = (selectedCategoryId) => {
+    setSelectedCategory(selectedCategoryId);
+    filterProducts("category_id", selectedCategoryId);
+  };
+
+  // Handle product by color
+  const setSelectedColor = (selectedColorId) => {
+    setSelectedColorId(selectedColorId);
+    filterProducts("color_id", selectedColorId);
+  };
+
   return (
     <div className="main-container">
-      <FilterSection />
+      <FilterSection
+        setSelectedColor={setSelectedColor}
+        selectCategoryType={selectCategoryType}
+      />
       <div className="filter-section">
-        <Sort />
+        <Sort handleStarRating={handleStarRating} />
         <Search handleSearch={handleSearch} />
       </div>
       <div>

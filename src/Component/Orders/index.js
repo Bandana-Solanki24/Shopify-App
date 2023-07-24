@@ -1,22 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./index.css";
+import { AiFillDelete } from "react-icons/ai";
 
-import Delete from "../Delete";
 import OrderSummary from "../OrderSummary";
 
 import { BsPlusSquareFill, BsFileMinusFill } from "react-icons/bs";
 
 function Orders() {
   const [cartItems, setCartItems] = useState([]);
-  // const [amount, setAmount] = useState(1);
-
-  // const setDecrease = () => {
-  //   amount > 1 ? setAmount(amount - 1) : setAmount(1);
-  // };
-
-  // const setIncrease = () => {
-  //   setAmount(amount + 1);
-  // };
 
   useEffect(() => {
     // Retrieve the cart data from local storage
@@ -49,6 +40,12 @@ function Orders() {
   };
 
   console.log(cartItems);
+  //handling the delete Functionality
+  const deleteProduct = (itemId) => {
+    const updatedData = cartItems.filter((item) => item.id !== itemId);
+    setCartItems(updatedData);
+    localStorage.setItem("cartData", JSON.stringify(updatedData));
+  };
 
   return (
     <div className="order-container">
@@ -100,7 +97,10 @@ function Orders() {
                 </td>
                 <td>{parseInt(item.product_cost) * item.counter}</td>
                 <td>
-                  <Delete />
+                  <AiFillDelete
+                    onClick={() => deleteProduct(item.id)}
+                    style={{ color: "red", pading: "10px" }}
+                  />
                 </td>
               </tr>
             ))}

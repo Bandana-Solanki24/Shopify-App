@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./index.css";
 import Star from "../Star";
+import { BiLogoFacebookCircle } from "react-icons/bi";
+import { FaTwitter } from "react-icons/fa";
+import { IoLogoWhatsapp } from "react-icons/io";
 
 const SinglePage = () => {
   const navigate = useNavigate();
@@ -93,6 +96,11 @@ const SinglePage = () => {
         </div>
         <div>
           <h5>Share</h5>
+          <div className="social-media-button">
+            <BiLogoFacebookCircle />
+            <IoLogoWhatsapp />
+            <FaTwitter />
+          </div>
         </div>
       </div>
     </div>
