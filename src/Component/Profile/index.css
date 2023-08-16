@@ -1,7 +1,26 @@
 .profile-container{
     display: flex;
-    padding:20px;
-    margin: 20px;
-    justify-content: space-evenly;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
     
 }
+.address-button{
+    border: 1px solid black;
+    border-radius:5px;
+}
+/* index.css */
+
+.profile-container {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .profile-section {
+    flex: 1;
+  }
+  
+  .address-section {
+    flex: 1;
+  }
+  

@@ -32,7 +32,7 @@ const SinglePage = () => {
     // Update the cart data in local storage
     localStorage.setItem("cartData", JSON.stringify(updatedCartData));
 
-    navigate("/cart");
+    navigate("/order");
   };
 
   return (
@@ -87,7 +87,16 @@ const SinglePage = () => {
         <p>{cartData.product_rating}</p>
         <hr />
         <p className="cost">Price:Rs. {cartData.product_cost}</p>
-        <span>Color: {cartData.color_id.$oid}</span>
+
+        <span>Color:</span>
+        <span
+          style={{
+            backgroundColor: `#${cartData.color_id.$oid.substring(0, 6)}`,
+            width: "20px",
+            height: "20px",
+          }}
+          className="color-indicator"
+        ></span>
         <div className="button-container">
           <button className=" button button1 " onClick={handleAddButtonClick}>
             ADD TO CART

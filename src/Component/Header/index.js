@@ -3,9 +3,15 @@ import "./index.css";
 import { Link } from "react-router-dom";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { FaUserCheck } from "react-icons/fa";
+import { GiHamburgerMenu } from "react-icons/gi";
 
 function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  const handleToggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   const handleToggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -22,7 +28,7 @@ function Header() {
         <p className="brand-text">shopify</p>
       </div>
 
-      <div className="menu-links">
+      <div className={`menu-links ${isMenuOpen ? "open" : ""}`}>
         <ul className="nav-links">
           <li>
             <Link className="nav-link" to="/">
@@ -52,7 +58,6 @@ function Header() {
             </Link>
           </li>
           <li>
-            {/* <Link className="nav-link" to="/menu"> */}
             <div className="icon-space icon-container">
               <div className="dropdown">
                 <button
@@ -99,6 +104,9 @@ function Header() {
             </div>
           </li>
         </ul>
+        <div className="hamburger-menu" onClick={handleToggleMenu}>
+          <GiHamburgerMenu size={30} />
+        </div>
       </div>
     </nav>
   );

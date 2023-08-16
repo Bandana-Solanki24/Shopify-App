@@ -24,12 +24,12 @@ import React, { useState } from "react";
 import "./index.css";
 
 import Product from "../Product";
-import { useFilterContext } from "../../Context/FilterContext";
+import { useProductContext } from "../../Context/productContext";
 
 const FilterProductList = ({ filteredProducts }) => {
-  const { filter_products } = useFilterContext();
+  const { products } = useProductContext();
   const itemsPerPage = 6; // Number of items to display per page
-  const totalPages = Math.ceil(filter_products.length / itemsPerPage);
+  const totalPages = Math.ceil(products.length / itemsPerPage);
   const [currentPage, setCurrentPage] = useState(1);
 
   // Get the index of the first and last products for the current page

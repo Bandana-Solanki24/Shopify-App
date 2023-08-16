@@ -1,0 +1,13 @@
+.order-container{
+    display: flex;
+    justify-content: space-evenly;
+}
+.image-dimension{
+    height:100px;
+    width:100px;
+}
+.invoice-button{
+    display: flex;
+    margin-top: 20px;
+
+}

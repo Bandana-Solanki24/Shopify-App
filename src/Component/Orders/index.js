@@ -3,11 +3,32 @@ import "./index.css";
 import { AiFillDelete } from "react-icons/ai";
 
 import OrderSummary from "../OrderSummary";
+import { useNavigate } from "react-router-dom";
 
 import { BsPlusSquareFill, BsFileMinusFill } from "react-icons/bs";
 
 function Orders() {
   const [cartItems, setCartItems] = useState([]);
+  const [orderInfo, setOrderInfo] = useState({
+    orderNumber: "",
+    currentDate: "",
+  });
+
+  const navigate = useNavigate();
+
+  function generateOrderNumber() {
+    // Generate a random number of 6 digits as the order number
+    const orderNumber =
+      Math.floor(Math.random() * (999999 - 100000 + 1)) + 100000;
+
+    // Get the current date in the format: yyyy-mm-dd
+    const currentDate = new Date().toISOString().slice(0, 10);
+    setOrderInfo(orderNumber, currentDate);
+    localStorage.setItem("orderNumber", orderNumber);
+    localStorage.setItem("currentDate", currentDate);
+
+    return { orderNumber, currentDate };
+  }
 
   useEffect(() => {
     // Retrieve the cart data from local storage
@@ -46,6 +67,25 @@ function Orders() {
     setCartItems(updatedData);
     localStorage.setItem("cartData", JSON.stringify(updatedData));
   };
+  function calculateTotalCost(cartItems) {
+    return cartItems.reduce(
+      (total, item) => total + item.product_cost * item.counter,
+      0
+    );
+  }
+
+  const addItemsToCart = () => {
+    const { orderNumber, currentDate } = generateOrderNumber();
+    setOrderInfo({ orderNumber, currentDate });
+    console.log(orderNumber);
+    navigate("/cart", {
+      state: {
+        cartItems: cartItems,
+        orderNumber: orderNumber,
+        currentDate: currentDate,
+      },
+    });
+  };
 
   return (
     <div className="order-container">
@@ -53,62 +93,69 @@ function Orders() {
         <div>
           <h1>My Orders</h1>
         </div>
-        <table>
-          <thead>
-            <tr>
-              <th>Image</th>
-              <th>Name</th>
-              <th>Price</th>
-              <th>Quantity</th>
-              <th>Total</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {cartItems.map((item) => (
-              <tr key={item.id}>
-                <td>
-                  <img
-                    className="cart-image"
-                    src={item.product_image}
-                    alt={item.product_image}
-                  />
-                </td>
-                <td>
-                  <p>{item.product_name}</p>
-                </td>
-                <td>
-                  <p>{item.product_cost}/-</p>
-                </td>
-                <td>
-                  <div>
-                    <BsPlusSquareFill
-                      onClick={() =>
-                        handleCounterChange(item.id, item.counter + 1)
-                      }
-                    />
-                    <span>{item.counter}</span>
-                    <BsFileMinusFill
-                      onClick={() =>
-                        handleCounterChange(item.id, item.counter - 1)
-                      }
-                    />
-                  </div>
-                </td>
-                <td>{parseInt(item.product_cost) * item.counter}</td>
-                <td>
-                  <AiFillDelete
-                    onClick={() => deleteProduct(item.id)}
-                    style={{ color: "red", pading: "10px" }}
-                  />
-                </td>
+        {cartItems.length > 0 ? (
+          <table>
+            <thead>
+              <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+                <th>Action</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {cartItems.map((item) => (
+                <tr key={item.id}>
+                  <td>
+                    <img
+                      className="cart-image"
+                      src={item.product_image}
+                      alt={item.product_image}
+                    />
+                  </td>
+                  <td>
+                    <p>{item.product_name}</p>
+                  </td>
+                  <td>
+                    <p>{item.product_cost}/-</p>
+                  </td>
+                  <td>
+                    <div>
+                      <BsPlusSquareFill
+                        onClick={() =>
+                          handleCounterChange(item.id, item.counter + 1)
+                        }
+                      />
+                      <span>{item.counter}</span>
+                      <BsFileMinusFill
+                        onClick={() =>
+                          handleCounterChange(item.id, item.counter - 1)
+                        }
+                      />
+                    </div>
+                  </td>
+                  <td>{parseInt(item.product_cost) * item.counter}</td>
+                  <td>
+                    <AiFillDelete
+                      onClick={() => deleteProduct(item.id)}
+                      style={{ color: "red", pading: "10px" }}
+                    />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <p>No items added to cart</p>
+        )}
       </div>
       <div className="card-container">
-        <OrderSummary />
+        <OrderSummary
+          addItemsToCart={addItemsToCart}
+          totalCost={calculateTotalCost(cartItems)}
+        />
       </div>
     </div>
   );

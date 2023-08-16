@@ -64,6 +64,19 @@ const ProductsSection = () => {
     filterProducts("color_id", selectedColorId);
   };
 
+  //handle the price of the products
+  const handlePrice = (order) => {
+    const sortedProducts = [...filteredProducts].sort((a, b) => {
+      if (order === "asc") {
+        return a.product_rating - b.product_rating;
+      } else {
+        return b.product_rating - a.product_rating;
+      }
+    });
+    setFilteredProducts(sortedProducts);
+    console.log(sortedProducts, "s");
+  };
+
   return (
     <div className="main-container">
       <FilterSection
@@ -71,7 +84,7 @@ const ProductsSection = () => {
         selectCategoryType={selectCategoryType}
       />
       <div className="filter-section">
-        <Sort handleStarRating={handleStarRating} />
+        <Sort handlePrice={handlePrice} handleStarRating={handleStarRating} />
         <Search handleSearch={handleSearch} />
       </div>
       <div>
